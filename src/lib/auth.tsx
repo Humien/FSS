@@ -51,9 +51,6 @@ async function ensureAccounts(): Promise<StoredAccount[]> {
   for (const u of missing) {
     accounts.push({ email: u.email.toLowerCase(), passwordHash: await hash(defaultPasswordFor(u.email)), userId: u.id });
   }
-  // Force every account's password to the temporary value "123" as requested
-  const forcedHash = await hash("123");
-  accounts = accounts.map((a) => ({ ...a, passwordHash: forcedHash }));
   // Persist updated accounts
   window.localStorage.setItem(USERS_KEY, JSON.stringify(accounts));
   return accounts;
