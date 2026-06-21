@@ -1,5 +1,11 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".output",
-  "framework": "tanstack-start"
+  "framework": "tanstack-start",
+  "public": ".output/public",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ]
 }
